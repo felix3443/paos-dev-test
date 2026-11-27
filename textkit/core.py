@@ -26,6 +26,28 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 
+def _split_words(text: str) -> list[str]:
+    """Split text into lowercase words on separators, camel and acronym boundaries."""
+    pattern = r"[A-Z]+(?=[A-Z][a-z])|(?:[A-Z]?[a-z]+|[A-Z]+|\d+[a-z]*)(?:\d+[a-z]*)*"
+    return [word.lower() for word in re.findall(pattern, text)]
+
+
+def snake_case(text: str) -> str:
+    """Convert text to snake_case."""
+    return "_".join(_split_words(text))
+
+
+def kebab_case(text: str) -> str:
+    """Convert text to kebab-case."""
+    return "-".join(_split_words(text))
+
+
+def camel_case(text: str) -> str:
+    """Convert text to lowerCamelCase."""
+    words = _split_words(text)
+    return "".join(words[:1] + [word.capitalize() for word in words[1:]])
+
+
 def truncate(text: str, width: int, suffix: str = "...") -> str:
     """Cut text to at most width characters, ending with suffix when cut.
 

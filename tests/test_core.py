@@ -1,7 +1,10 @@
 import unittest
 
-from textkit import capitalize_words, chunk, truncate
-from textkit.core import slugify, word_count
+from textkit import camel_case, capitalize_words, chunk, kebab_case, snake_case, truncate
+from textkit.core import _split_words, slugify, word_count
+from textkit.core import camel_case as core_camel_case
+from textkit.core import kebab_case as core_kebab_case
+from textkit.core import snake_case as core_snake_case
 
 
 class CapitalizeWordsTest(unittest.TestCase):
@@ -133,6 +136,88 @@ class TruncateTest(unittest.TestCase):
 
     def test_zero_width(self):
         self.assertEqual(truncate("abcdefghij", 0), "")
+
+
+class SplitWordsTest(unittest.TestCase):
+    def test_cases(self):
+        cases = {
+            "foo bar": ["foo", "bar"],
+            "foo-bar": ["foo", "bar"],
+            "foo_bar": ["foo", "bar"],
+            "fooBar": ["foo", "bar"],
+            "FooBar": ["foo", "bar"],
+            "HTTPServer": ["http", "server"],
+            "parseXMLFile": ["parse", "xml", "file"],
+            "hello-World_fooBar baz": ["hello", "world", "foo", "bar", "baz"],
+            "__Hello--World__": ["hello", "world"],
+            "  foo   bar  ": ["foo", "bar"],
+            "": [],
+            "--__  ": [],
+            "version2Update": ["version2", "update"],
+            "version2beta": ["version2beta"],
+            "HTTP2Server": ["http2", "server"],
+            "HTTP2server": ["http2server"],
+            "AB12cd34": ["ab12cd34"],
+            "XML2": ["xml2"],
+            "42abc": ["42abc"],
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(_split_words(text), expected)
+
+
+class SnakeCaseTest(unittest.TestCase):
+    def test_cases(self):
+        cases = {
+            "hello-World_fooBar baz": "hello_world_foo_bar_baz",
+            "HTTPServer": "http_server",
+            "version2Update": "version2_update",
+            "version2beta": "version2beta",
+            "HTTP2Server": "http2_server",
+            "HTTP2server": "http2server",
+            "AB12cd34": "ab12cd34",
+            "XML2": "xml2",
+            "__Hello--World__": "hello_world",
+            "-_ -_": "",
+            "": "",
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(snake_case(text), expected)
+
+
+class KebabCaseTest(unittest.TestCase):
+    def test_cases(self):
+        cases = {
+            "hello-World_fooBar baz": "hello-world-foo-bar-baz",
+            "parseXMLFile": "parse-xml-file",
+            "  foo   bar  ": "foo-bar",
+            "--__  ": "",
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(kebab_case(text), expected)
+
+
+class CamelCaseTest(unittest.TestCase):
+    def test_cases(self):
+        cases = {
+            "hello-World_fooBar baz": "helloWorldFooBarBaz",
+            "HTTPServer": "httpServer",
+            "parseXMLFile": "parseXmlFile",
+            "FooBar": "fooBar",
+            "version2Update": "version2Update",
+            "": "",
+            "--__  ": "",
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(camel_case(text), expected)
+
+    def test_importable_from_core(self):
+        self.assertIs(core_camel_case, camel_case)
+        self.assertIs(core_snake_case, snake_case)
+        self.assertIs(core_kebab_case, kebab_case)
 
 
 if __name__ == "__main__":

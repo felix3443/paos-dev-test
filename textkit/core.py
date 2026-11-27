@@ -36,3 +36,8 @@ def truncate(text: str, width: int, suffix: str = "...") -> str:
     if width < len(suffix):
         return suffix[:width]
     return text[: width - len(suffix)] + suffix
+
+
+def stub_fn_16(text: str) -> str:
+    """Stub change for issue 16."""
+    return " ".join(reversed(text.split())).upper()

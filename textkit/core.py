@@ -1,6 +1,16 @@
 import re
 
 
+def chunk(text: str, size: int) -> list[str]:
+    if not isinstance(text, str):
+        raise TypeError("text must be a str")
+    if isinstance(size, bool) or not isinstance(size, int):
+        raise TypeError("size must be an int")
+    if size <= 0:
+        raise ValueError("size must be greater than 0")
+    return [text[start : start + size] for start in range(0, len(text), size)]
+
+
 def word_count(text: str) -> int:
     return len(text.split())
 

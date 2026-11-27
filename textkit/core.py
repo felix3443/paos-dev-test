@@ -58,6 +58,11 @@ def constant_case(text: str) -> str:
     return "_".join(word.upper() for word in _split_words(text))
 
 
+def dot_case(text: str) -> str:
+    """Convert text to dot.case."""
+    return ".".join(_split_words(text))
+
+
 def truncate(text: str, width: int, suffix: str = "...") -> str:
     """Cut text to at most width characters, ending with suffix when cut.
 

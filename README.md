@@ -4,10 +4,10 @@ Toy Python package used to test an automated development loop. Run tests with `p
 
 ## Naming-style conversion
 
-`textkit` provides `snake_case`, `kebab_case` and `camel_case`. Input is split into words on spaces, `-`, `_`, camelCase boundaries and acronym boundaries; digits stay attached to the preceding word. Empty or separator-only input returns `""`.
+`textkit` provides `snake_case`, `kebab_case`, `camel_case` and `pascal_case`. Input is split into words on spaces, `-`, `_`, camelCase boundaries and acronym boundaries; digits stay attached to the preceding word. Empty or separator-only input returns `""`.
 
 ```python
-from textkit import camel_case, kebab_case, snake_case
+from textkit import camel_case, kebab_case, pascal_case, snake_case
 
 snake_case("hello-World_fooBar baz")  # -> "hello_world_foo_bar_baz"
 snake_case("HTTPServer")              # -> "http_server"
@@ -17,4 +17,7 @@ kebab_case("  foo   bar  ")           # -> "foo-bar"
 camel_case("hello-World_fooBar baz")  # -> "helloWorldFooBarBaz"
 camel_case("parseXMLFile")            # -> "parseXmlFile"
 camel_case("FooBar")                  # -> "fooBar"
+pascal_case("hello-World_fooBar baz") # -> "HelloWorldFooBarBaz"
+pascal_case("parseXMLFile")           # -> "ParseXmlFile"
+pascal_case("http server")            # -> "HttpServer"
 ```

@@ -48,6 +48,11 @@ def camel_case(text: str) -> str:
     return "".join(words[:1] + [word.capitalize() for word in words[1:]])
 
 
+def pascal_case(text: str) -> str:
+    """Convert text to PascalCase."""
+    return "".join(word.capitalize() for word in _split_words(text))
+
+
 def truncate(text: str, width: int, suffix: str = "...") -> str:
     """Cut text to at most width characters, ending with suffix when cut.
 

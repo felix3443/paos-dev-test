@@ -1,6 +1,7 @@
 import unittest
 
-from textkit.core import slugify, truncate, word_count
+from textkit import truncate
+from textkit.core import slugify, word_count
 
 
 class WordCountTest(unittest.TestCase):
@@ -42,6 +43,27 @@ class TruncateTest(unittest.TestCase):
 
     def test_long_text_cut(self):
         self.assertEqual(truncate("abcdefghij", 8), "abcde...")
+
+    def test_exact_width_unchanged(self):
+        self.assertEqual(truncate("abc", 3), "abc")
+
+    def test_custom_suffix(self):
+        self.assertEqual(truncate("abcdefghij", 8, "!"), "abcdefg!")
+
+    def test_empty_suffix(self):
+        self.assertEqual(truncate("abcdefghij", 8, ""), "abcdefgh")
+
+    def test_suffix_fills_width(self):
+        self.assertEqual(truncate("abcdefghij", 3), "...")
+
+    def test_default_suffix_exceeds_width(self):
+        self.assertEqual(truncate("abcdefghij", 2), "..")
+
+    def test_custom_suffix_exceeds_width(self):
+        self.assertEqual(truncate("abcdefghij", 5, "abcdef"), "abcde")
+
+    def test_zero_width(self):
+        self.assertEqual(truncate("abcdefghij", 0), "")
 
 
 if __name__ == "__main__":

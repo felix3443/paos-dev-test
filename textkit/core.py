@@ -41,3 +41,6 @@ def truncate(text: str, width: int, suffix: str = "...") -> str:
 def stub_fn_16(text: str) -> str:
     """Stub change for issue 16."""
     return " ".join(reversed(text.split())).upper()
+def fixture_fn_16(text: str) -> str:
+    """Conflict fixture: lands on main while #16 is in review."""
+    return text[::-1]

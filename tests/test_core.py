@@ -56,6 +56,15 @@ class TruncateTest(unittest.TestCase):
     def test_suffix_fills_width(self):
         self.assertEqual(truncate("abcdefghij", 3), "...")
 
+    def test_default_suffix_exceeds_width(self):
+        self.assertEqual(truncate("abcdefghij", 2), "..")
+
+    def test_custom_suffix_exceeds_width(self):
+        self.assertEqual(truncate("abcdefghij", 5, "abcdef"), "abcde")
+
+    def test_zero_width(self):
+        self.assertEqual(truncate("abcdefghij", 0), "")
+
 
 if __name__ == "__main__":
     unittest.main()

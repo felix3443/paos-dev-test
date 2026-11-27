@@ -36,3 +36,8 @@ def truncate(text: str, width: int, suffix: str = "...") -> str:
     if width < len(suffix):
         return suffix[:width]
     return text[: width - len(suffix)] + suffix
+
+
+def fixture_fn_16(text: str) -> str:
+    """Conflict fixture: lands on main while #16 is in review."""
+    return text[::-1]

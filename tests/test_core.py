@@ -1,7 +1,54 @@
 import unittest
 
-from textkit import truncate
+from textkit import chunk, truncate
 from textkit.core import slugify, word_count
+
+
+class ChunkTest(unittest.TestCase):
+    def test_equal_sized_pieces(self):
+        self.assertEqual(chunk("abcdef", 2), ["ab", "cd", "ef"])
+
+    def test_shorter_last_piece(self):
+        self.assertEqual(chunk("abcde", 2), ["ab", "cd", "e"])
+
+    def test_empty_text(self):
+        self.assertEqual(chunk("", 2), [])
+
+    def test_size_one(self):
+        self.assertEqual(chunk("abc", 1), ["a", "b", "c"])
+
+    def test_size_larger_than_text(self):
+        self.assertEqual(chunk("abc", 5), ["abc"])
+
+    def test_unicode_characters(self):
+        self.assertEqual(chunk("你好吗🌍!", 2), ["你好", "吗🌍", "!"])
+
+    def test_non_positive_size(self):
+        for text in ("ab", ""):
+            for size in (0, -1, -10):
+                with self.subTest(text=text, size=size):
+                    with self.assertRaises(ValueError):
+                        chunk(text, size)
+
+    def test_non_integer_size(self):
+        for text in ("ab", ""):
+            for size in (1.5, 2.0, "2", None, [], {}):
+                with self.subTest(text=text, size=size):
+                    with self.assertRaises(TypeError):
+                        chunk(text, size)
+
+    def test_boolean_size(self):
+        for text in ("ab", ""):
+            for size in (True, False):
+                with self.subTest(text=text, size=size):
+                    with self.assertRaises(TypeError):
+                        chunk(text, size)
+
+    def test_non_string_text(self):
+        for text in (None, 123, True, b"ab", ["a", "b"], {}):
+            with self.subTest(text=text):
+                with self.assertRaises(TypeError):
+                    chunk(text, 2)
 
 
 class WordCountTest(unittest.TestCase):

@@ -1,1 +1,1 @@
-from .core import truncate
+from .core import chunk, truncate

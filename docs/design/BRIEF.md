@@ -1,5 +1,5 @@
 # BRIEF
 
-Stub brief for issue 63.
+Stub brief for issue 66.
 
-Confirmed direction: CHOSEN: b (chosen by the owner via Telegram after 20s)
+Confirmed direction: existing

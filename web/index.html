@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="style.css"></head>
+<body><main><h1>Notes</h1><ul id="list"></ul><p id="empty" hidden>No notes yet</p>
+<button type="button" aria-label="Add note" title="Add note">+</button></main>
+<script>
+const empty = new URLSearchParams(location.search).get('state') === 'empty'
+const notes = empty ? [] : ['First note (stub data)', 'Second note (stub data)']
+for (const n of notes) { const li = document.createElement('li'); li.textContent = n; document.getElementById('list').append(li) }
+document.getElementById('empty').hidden = notes.length > 0
+</script></body></html>

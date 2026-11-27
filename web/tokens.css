@@ -1,0 +1,2 @@
+:root{--bg:#f6f4ef;--text:#1c1a16;--accent:#1c1a16;--on-accent:#f6f4ef;--r:2px}
+@media (prefers-color-scheme: dark){:root{--bg:#15140f;--text:#f6f4ef;--accent:#f6f4ef;--on-accent:#15140f}}

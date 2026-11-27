@@ -49,3 +49,8 @@ def fixture_fn_16(text: str) -> str:
 def stub_fn_15(text: str) -> str:
     """Stub change for issue 15."""
     return " ".join(reversed(text.split()))
+
+
+def stub_fn_41(text: str) -> str:
+    """Stub change for issue 41."""
+    return " ".join(reversed(text.split()))

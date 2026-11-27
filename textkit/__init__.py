@@ -1,1 +1,1 @@
-from .core import chunk, truncate
+from .core import capitalize_words, chunk, truncate

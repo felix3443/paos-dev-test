@@ -1,6 +1,10 @@
 import re
 
 
+def capitalize_words(text: str) -> str:
+    return " ".join(word[:1].upper() + word[1:] for word in text.split(" "))
+
+
 def chunk(text: str, size: int) -> list[str]:
     if not isinstance(text, str):
         raise TypeError("text must be a str")

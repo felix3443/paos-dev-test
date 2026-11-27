@@ -1,7 +1,29 @@
 import unittest
 
-from textkit import chunk, truncate
+from textkit import capitalize_words, chunk, truncate
 from textkit.core import slugify, word_count
+
+
+class CapitalizeWordsTest(unittest.TestCase):
+    def test_capitalizes_first_character_and_preserves_rest(self):
+        self.assertEqual(capitalize_words("hello wORLD"), "Hello WORLD")
+
+    def test_preserves_spaces(self):
+        self.assertEqual(capitalize_words("  hello   world  "), "  Hello   World  ")
+
+    def test_empty_and_spaces_only(self):
+        for text in ("", " ", "   "):
+            with self.subTest(text=text):
+                self.assertEqual(capitalize_words(text), text)
+
+    def test_single_character_words(self):
+        self.assertEqual(capitalize_words("a b C"), "A B C")
+
+    def test_only_spaces_separate_words(self):
+        self.assertEqual(capitalize_words("hello\tworld foo\nbar"), "Hello\tworld Foo\nbar")
+
+    def test_unicode_letters(self):
+        self.assertEqual(capitalize_words("école über"), "École Über")
 
 
 class ChunkTest(unittest.TestCase):

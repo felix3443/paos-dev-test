@@ -1,3 +1,3 @@
 # DESIGN
 
-Stub design for issue 57: tokens from tile B (Paper), see web/tokens.css.
+Stub design for issue 63: tokens from tile B (Paper), see web/tokens.css.

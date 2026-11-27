@@ -44,3 +44,8 @@ def stub_fn_16(text: str) -> str:
 def fixture_fn_16(text: str) -> str:
     """Conflict fixture: lands on main while #16 is in review."""
     return text[::-1]
+
+
+def stub_fn_15(text: str) -> str:
+    """Stub change for issue 15."""
+    return " ".join(reversed(text.split()))

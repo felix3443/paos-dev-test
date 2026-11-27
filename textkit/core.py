@@ -12,8 +12,7 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 
-def truncate(text: str, width: int) -> str:
-    """Cut text to at most width characters, ending with '...' when cut."""
+def truncate(text: str, width: int, suffix: str = "...") -> str:
     if len(text) <= width:
         return text
-    return text[: width - 3] + "..."
+    return text[: width - len(suffix)] + suffix

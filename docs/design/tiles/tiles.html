@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>方向样片</title>
+<style>
+  /* 每张样片在自己的 .tile 上定义一套变量，样片内部只用变量。三张的内容完全相同。 */
+  *{box-sizing:border-box} body{margin:0;font:15px/1.6 system-ui,sans-serif;background:#111;color:#eee}
+  .wrap{display:grid;gap:24px;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+  .meta{padding:0 4px 8px} .meta h2{margin:0;font-size:16px} .meta p{margin:4px 0 0;opacity:.7}
+  .tile{background:var(--bg);color:var(--text);border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:24px;min-width:0}
+  .tile h1{font:var(--display);margin:0;text-wrap:balance} .tile p{margin:0;color:var(--text-2);max-width:60ch}
+  .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{font:inherit;padding:10px 18px;border-radius:var(--r);border:1px solid var(--border);background:transparent;color:inherit}
+  .btn.primary{background:var(--accent);color:var(--on-accent);border-color:transparent}
+  .field{font:inherit;padding:10px 14px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);color:inherit;min-width:0;flex:1}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:calc(var(--r) * 1.6);padding:16px}
+  .swatches{display:flex;gap:8px} .swatches i{width:32px;height:32px;border-radius:8px;border:1px solid var(--border)}
+  .a{--bg:#0f1014;--surface:#191b22;--border:#2c2f3a;--text:#f3f3f6;--text-2:#a2a5b3;--accent:#8ab4ff;--on-accent:#0b0d12;--r:10px;--display:700 40px/1.1 system-ui,sans-serif}
+  .b{--bg:#f6f4ef;--surface:#fffdf8;--border:#d9d4c7;--text:#1c1a16;--text-2:#6b665b;--accent:#1c1a16;--on-accent:#f6f4ef;--r:2px;--display:600 40px/1.1 Georgia,serif}
+  .c{--bg:#0b0a12;--surface:#15131f;--border:#2a2740;--text:#f3f2f8;--text-2:#a5a2b8;--accent:#b79cff;--on-accent:#0b0a12;--r:14px;--display:800 40px/1.05 system-ui,sans-serif}
+</style>
+</head>
+<body>
+<h1>Direction tiles</h1>
+<div class="wrap">
+  <!-- 复制这一段三次，类名分别是 a、b、c。标题、正文、条目换成这个产品的真实内容，三张保持一致。 -->
+  <section>
+    <div class="meta"><h2>A　方向名</h2><p>一句话：它适合什么，代价是什么。字体：…　配色策略：…</p></div>
+    <div class="tile a">
+      <h2 class="headline">这个产品真实的主标题</h2>
+      <p>真实的一句副标题，说清替谁解决什么。</p>
+      <div class="row"><button class="btn primary">主操作</button><button class="btn">次操作</button></div>
+      <div class="row"><input class="field" placeholder="真实的占位文字"></div>
+      <div class="card"><strong>一个真实条目的名字</strong><p>它的真实描述。</p></div>
+      <div class="swatches"><i style="background:var(--bg)"></i><i style="background:var(--surface)"></i><i style="background:var(--text)"></i><i style="background:var(--accent)"></i></div>
+    </div>
+  </section>
+  <section>
+    <div class="meta"><h2>B　方向名</h2><p>一句话：它适合什么，代价是什么。字体：…　配色策略：…</p></div>
+    <div class="tile b">
+      <h2 class="headline">这个产品真实的主标题</h2>
+      <p>真实的一句副标题，说清替谁解决什么。</p>
+      <div class="row"><button class="btn primary">主操作</button><button class="btn">次操作</button></div>
+      <div class="row"><input class="field" placeholder="真实的占位文字"></div>
+      <div class="card"><strong>一个真实条目的名字</strong><p>它的真实描述。</p></div>
+      <div class="swatches"><i style="background:var(--bg)"></i><i style="background:var(--surface)"></i><i style="background:var(--text)"></i><i style="background:var(--accent)"></i></div>
+    </div>
+  </section>
+  <section>
+    <div class="meta"><h2>C　方向名</h2><p>一句话：它适合什么，代价是什么。字体：…　配色策略：…</p></div>
+    <div class="tile c">
+      <h2 class="headline">这个产品真实的主标题</h2>
+      <p>真实的一句副标题，说清替谁解决什么。</p>
+      <div class="row"><button class="btn primary">主操作</button><button class="btn">次操作</button></div>
+      <div class="row"><input class="field" placeholder="真实的占位文字"></div>
+      <div class="card"><strong>一个真实条目的名字</strong><p>它的真实描述。</p></div>
+      <div class="swatches"><i style="background:var(--bg)"></i><i style="background:var(--surface)"></i><i style="background:var(--text)"></i><i style="background:var(--accent)"></i></div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

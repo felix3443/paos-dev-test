@@ -4,10 +4,10 @@ Toy Python package used to test an automated development loop. Run tests with `p
 
 ## Naming-style conversion
 
-`textkit` provides `snake_case`, `kebab_case`, `camel_case`, `pascal_case`, `constant_case` and `dot_case`. Input is split into words on spaces, `-`, `_`, camelCase boundaries and acronym boundaries; digits stay attached to the preceding word. Empty or separator-only input returns `""`.
+`textkit` provides `snake_case`, `kebab_case`, `camel_case`, `pascal_case`, `constant_case`, `dot_case` and `train_case`. Input is split into words on spaces, `-`, `_`, camelCase boundaries and acronym boundaries; digits stay attached to the preceding word. Empty or separator-only input returns `""`.
 
 ```python
-from textkit import camel_case, constant_case, dot_case, kebab_case, pascal_case, snake_case
+from textkit import camel_case, constant_case, dot_case, kebab_case, pascal_case, snake_case, train_case
 
 snake_case("hello-World_fooBar baz")  # -> "hello_world_foo_bar_baz"
 snake_case("HTTPServer")              # -> "http_server"
@@ -23,4 +23,8 @@ pascal_case("http server")            # -> "HttpServer"
 constant_case("http server")          # -> "HTTP_SERVER"
 dot_case("HTTPServer error")          # -> "http.server.error"
 dot_case("hello-World_fooBar baz")    # -> "hello.world.foo.bar.baz"
+train_case("hello world")            # -> "Hello-World"
+train_case("hello-World_fooBar baz") # -> "Hello-World-Foo-Bar-Baz"
+train_case("parseXMLFile")           # -> "Parse-Xml-File"
+train_case("version2Update")         # -> "Version2-Update"
 ```

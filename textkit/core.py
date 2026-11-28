@@ -101,3 +101,8 @@ def stub_fn_41(text: str) -> str:
 def stub_fn_58(text: str) -> str:
     """Stub change for issue 58."""
     return " ".join(reversed(text.split()))
+
+
+def swap_case(text: str) -> str:
+    """Swap the case of each character in text."""
+    return text.swapcase()

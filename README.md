@@ -28,3 +28,15 @@ train_case("hello-World_fooBar baz") # -> "Hello-World-Foo-Bar-Baz"
 train_case("parseXMLFile")           # -> "Parse-Xml-File"
 train_case("version2Update")         # -> "Version2-Update"
 ```
+
+## Word order
+
+`reverse_words` splits input on any whitespace, reverses the order of the resulting tokens and joins them with single ASCII spaces. Punctuation stays attached to its token. Empty or whitespace-only input returns `""`.
+
+```python
+from textkit import reverse_words
+
+reverse_words("hello world foo") # -> "foo world hello"
+reverse_words("  a\tb\n c  ")    # -> "c b a"
+reverse_words("Hello, world!")   # -> "world! Hello,"
+```

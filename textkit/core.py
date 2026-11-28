@@ -106,3 +106,8 @@ def stub_fn_58(text: str) -> str:
 def swap_case(text: str) -> str:
     """Swap the case of each character in text."""
     return text.swapcase()
+
+
+def reverse_words(text: str) -> str:
+    """Reverse whitespace-separated words, joined by single spaces."""
+    return " ".join(reversed(text.split()))
